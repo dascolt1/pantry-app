@@ -49,14 +49,10 @@ app.use(flash());
 //user routes found in ./routers/user
 //app.use(userRouter);
 
-app.get('/login', (req, res) => {
+app.get('/register', (req, res) => {
   res.render('login', {
     message: req.flash('error'),
   });
-});
-
-app.get('/register', (req, res) => {
-  res.render('login');
 });
 
 app.get('/', (req, res) => {
