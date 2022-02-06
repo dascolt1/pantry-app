@@ -1,6 +1,6 @@
 const express = require('express');
 require('./db/mongoose');
-const User = require('./models/user');
+const User = require('./models/User');
 const userRouter = require('./routers/user');
 const path = require('path');
 const hbs = require('hbs');
@@ -47,7 +47,7 @@ app.use(passport.session());
 app.use(flash());
 
 //user routes found in ./routers/user
-app.use(userRouter);
+//app.use(userRouter);
 
 app.get('/login', (req, res) => {
   res.render('login', {
@@ -56,11 +56,23 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-  res.render('register');
+  res.render('login');
 });
 
-app.get('/', ensureAuthenticated, (req, res) => {
-  res.render('dashboard');
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
+app.get('/volunteer', (req, res) => {
+  res.render('volunteer');
+});
+
+app.get('/restaurants', (req, res) => {
+  res.render('restaurants');
 });
 
 app.get('/profile', ensureAuthenticated, (req, res) => {
